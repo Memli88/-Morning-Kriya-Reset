@@ -1,4 +1,4 @@
-const CACHE_NAME = "morning-kriya-reset-v2";
+const CACHE_NAME = "morning-kriya-reset-v3";
 
 const FILES_TO_CACHE = [
   "./",
