@@ -311,43 +311,37 @@ let time = practice[0].steps[0].time;
 let interval = null;
 
 /* UI */
-const phaseEl = document.getElementById("phase");
-const sectionEl = document.getElementById("section");
-const movementEl = document.getElementById("movement");
-const timerEl = document.getElementById("timer");
-const instructionEl = document.getElementById("instruction");
-const bandhaEl = document.getElementById("bandha");
-const nextEl = document.getElementById("next");
-const progressBar = document.getElementById("progressBar");
-const progressTime = document.getElementById("progressTime");
+const phaseEl=phase=document.getElementById("phase");
+const moveEl=document.getElementById("movement");
+const timerEl=document.getElementById("timer");
+const descEl=document.getElementById("description");
+const bandhaEl=document.getElementById("bandha");
+const nextEl=document.getElementById("next");
+const bar=document.getElementById("progressBar");
+const barTime=document.getElementById("progressTime");
 
 /* AUDIO */
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-function beep() {
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.frequency.value = 880;
-  gain.gain.value = 0.12;
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.start();
-  osc.stop(audioCtx.currentTime + 0.15);
+const audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+function beep(){
+const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+o.frequency.value=880;g.gain.value=0.12;
+o.connect(g);g.connect(audioCtx.destination);
+o.start();o.stop(audioCtx.currentTime+0.15);
+}
+function speak(t){
+if(!speechSynthesis)return;
+speechSynthesis.cancel();
+speechSynthesis.speak(new SpeechSynthesisUtterance(t));
 }
 
 /* TIME */
-const totalTime = practice.reduce(
-  (sum, sec) => sum + sec.steps.reduce((a,b)=>a+b.time,0), 0
-);
-
-function elapsed() {
-  let e = 0;
-  for (let i=0;i<s;i++)
-    e += practice[i].steps.reduce((a,b)=>a+b.time,0);
-  for (let j=0;j<m;j++)
-    e += practice[s].steps[j].time;
-  e += practice[s].steps[m].time - time;
-  return e;
+const totalTime=practice.reduce((a,p)=>a+p.steps.reduce((b,s)=>b+s.time,0),0);
+function elapsed(){
+let e=0;
+for(let i=0;i<p;i++)e+=practice[i].steps.reduce((b,s)=>b+s.time,0);
+for(let j=0;j<s;j++)e+=practice[p].steps[j].time;
+e+=practice[p].steps[s].time-time;
+return e;
 }
 
 /* RENDER */
