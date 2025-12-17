@@ -196,39 +196,114 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-/* PRACTICE DATA (shortened sample – expand freely) */
+
+/* PRACTICE DATA */
 const practice = [
-  {
-    phase: "Phase 1 — Awakening",
-    section: "Internal Kriyas",
-    steps: [
-      {
-        name: "Breath of Fire",
-        time: 90,
-        cue: "Rapid nasal exhales. Belly pumps. Spine tall.",
-        bandha: "Light Uddiyana · relaxed Mula"
-      }
-    ]
-  },
-  {
-    phase: "Phase 5 — Integration",
-    section: "Grounding",
-    steps: [
-      {
-        name: "Standing Forward Fold",
-        time: 75,
-        cue: "Soften knees. Long exhales. Let spine decompress.",
-        bandha: "No bandhas · complete release"
-      },
-      {
-        name: "Short Savasana",
-        time: 150,
-        cue: "Lie down. Hands on belly or heart. Do nothing.",
-        bandha: "No bandhas · no effort"
-      }
-    ]
-  }
+{
+phase:"PHASE 1 — Internal Awakening",
+steps:[
+{
+name:"Grounding & Centering",
+time:90,
+desc:"Sit tall, slow nasal breathing, arrive fully in the body.",
+bandha:"Gentle Mula Bandha · Soft Jalandhara Bandha"
+},
+{
+name:"Madhyama Nauli",
+time:150,
+desc:"Exhale fully, lift belly in Uddiyana Bandha, isolate the central abdominal column.",
+bandha:"Strong Uddiyana Bandha · Natural Mula Bandha"
+}
+]
+},
+{
+phase:"PHASE 2 — Pranic Charging",
+steps:[
+{
+name:"Kundalini Bhastrika with Twists",
+time:150,
+desc:"Fast rhythmic breath with spinal twists, energizing the system.",
+bandha:"Natural Uddiyana · Light Mula Bandha"
+},
+{
+name:"Breath of Joy",
+time:90,
+desc:"Three-part inhale with arm lifts, strong forward-fold exhale.",
+bandha:"Exhale-led Uddiyana · Brief Mula Bandha"
+}
+]
+},
+{
+phase:"PHASE 3 — Energy Circulation",
+steps:[
+{
+name:"Windmills",
+time:120,
+desc:"Wide stance twisting to opposite foot, fluid and rhythmic.",
+bandha:"Soft Uddiyana Bandha"
+},
+{
+name:"Marches with Jnana Mudra",
+time:120,
+desc:"Alternating knee lifts with arm raises to build heat.",
+bandha:"Mula Bandha for stability"
+},
+{
+name:"Body Waves & Trunk Twists",
+time:120,
+desc:"Wave the spine freely to circulate prana.",
+bandha:"Minimal bandhas, free flow"
+}
+]
+},
+{
+phase:"PHASE 4 — Strength & Containment",
+steps:[
+{
+name:"Chair Pose + Breath of Fire",
+time:120,
+desc:"Sit low, arms overhead, rapid nasal exhales.",
+bandha:"Strong Uddiyana · Essential Mula Bandha"
+},
+{
+name:"Ballet Squats",
+time:90,
+desc:"Smooth squats with turnout stance.",
+bandha:"Mula Bandha · Light Uddiyana"
+},
+{
+name:"Horse Stance",
+time:90,
+desc:"Hold wide stance, deep steady breathing.",
+bandha:"Grounding Mula Bandha"
+}
+]
+},
+{
+phase:"PHASE 5 — Integration",
+steps:[
+{
+name:"Standing Forward Fold",
+time:60,
+desc:"Release spine and nervous system.",
+bandha:"All bandhas released"
+},
+{
+name:"Seated Twist & Fold",
+time:90,
+desc:"Gentle twists and forward bend to settle energy.",
+bandha:"Very light Uddiyana"
+},
+{
+name:"Savasana",
+time:120,
+desc:"Complete stillness and integration.",
+bandha:"No bandhas"
+}
+]
+}
 ];
+
 
 /* STATE */
 let s = 0, m = 0;
