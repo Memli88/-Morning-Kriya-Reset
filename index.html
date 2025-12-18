@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Morning Kundalini Flow</title>
+<title>Morning Kriya Reset</title>
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0f172a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kundalini Flow">
+<meta name="apple-mobile-web-app-title" content="Morning Kriya Reset">
 
 <style>
 body {
@@ -18,78 +18,55 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   background: #0f172a;
   color: #e5e7eb;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  overflow-y: auto;
+  align-items: center;
 }
 
 .container {
   width: 94%;
   max-width: 480px;
   text-align: center;
-  padding-bottom: 160px;
 }
 
 h1 {
-  font-size: 1.2rem;
-  margin: 0.6rem 0 0.3rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
 }
 
 .phase {
-  color: #38bdf8;
-  font-size: 0.8rem;
-  margin-bottom: 0.2rem;
-}
-
-.section {
+  font-size: 0.95rem;
   color: #93c5fd;
-  font-size: 0.9rem;
-  margin-bottom: 0.2rem;
-}
-
-#poseImage {
-  width: 100%;
-  max-height: 220px;
-  object-fit: contain;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  margin: 0.4rem 0;
+  margin-top: 0.4rem;
 }
 
 .movement {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-top: 0.3rem;
+  margin-top: 0.4rem;
 }
 
 .timer {
-  font-size: 3.2rem;
-  margin: 0.4rem 0;
+  font-size: 3.5rem;
+  margin: 0.6rem 0;
 }
 
-.totalTime {
-  font-size: 0.75rem;
-  opacity: 0.7;
-  margin-bottom: 0.4rem;
-}
-
-.instruction {
+.description {
   font-size: 0.9rem;
-  line-height: 1.45;
   opacity: 0.9;
+  line-height: 1.4;
 }
 
 .bandha {
   font-size: 0.8rem;
-  margin-top: 0.35rem;
-  color: #c7d2fe;
+  margin-top: 0.3rem;
+  color: #a7f3d0;
 }
 
 .next {
   font-size: 0.8rem;
-  opacity: 0.7;
+  opacity: 0.6;
   margin-top: 0.4rem;
 }
 
@@ -103,21 +80,18 @@ h1 {
   color: white;
 }
 
-.secondary {
-  background: #475569;
-}
+.secondary { background: #475569; }
 
-/* Progress Bar */
 #progressWrapper {
   position: fixed;
-  bottom: 24px;
+  bottom: 28px;
   left: 5%;
   width: 90%;
 }
 
 #progressTime {
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   opacity: 0.7;
   margin-bottom: 4px;
 }
@@ -126,14 +100,14 @@ h1 {
   width: 100%;
   height: 8px;
   background: rgba(255,255,255,0.15);
-  border-radius: 4px;
-  overflow: hidden;
+  border-radius: 6px;
 }
 
 #progressBar {
   height: 100%;
   width: 0%;
   background: #38bdf8;
+  border-radius: 6px;
   transition: width 0.3s linear;
 }
 </style>
@@ -142,26 +116,20 @@ h1 {
 <body>
 
 <div class="container">
-  <h1>🌞 Morning Kundalini Flow</h1>
+  <h1>🌞 Morning Kriya Reset</h1>
 
   <div class="phase" id="phase"></div>
-  <div class="section" id="section"></div>
-
-  <img id="poseImage" src="images/poses/default.png" alt="Yoga pose">
-
   <div class="movement" id="movement"></div>
   <div class="timer" id="timer">00:00</div>
-  <div class="totalTime" id="totalTime"></div>
-
-  <div class="instruction" id="instruction"></div>
+  <div class="description" id="description"></div>
   <div class="bandha" id="bandha"></div>
   <div class="next" id="next"></div>
 
   <div class="controls">
-    <button class="secondary" onclick="prev()">⏮ Prev</button>
-    <button onclick="start()">▶ Start</button>
-    <button class="secondary" onclick="pause()">⏸ Pause</button>
-    <button class="secondary" onclick="next()">⏭ Next</button>
+    <button class="secondary" onclick="prev()">⏮</button>
+    <button onclick="start()">▶</button>
+    <button onclick="pause()">⏸</button>
+    <button class="secondary" onclick="next()">⏭</button>
   </div>
 
   <div class="controls">
@@ -176,205 +144,116 @@ h1 {
   </div>
 </div>
 
-<!-- iOS Wake Lock fallback -->
+<!-- iOS Wake Lock Hack -->
 <video id="wakelock" loop muted playsinline style="display:none">
   <source src="data:video/mp4;base64,AAAAHGZ0eXBpc29tAAACAGlzb20AAABtb292AAAAAGxtdmhkAAAAAAAAAAAAAAAAAAAD6AAAA+gAAQAAAQAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAABkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" type="video/mp4">
 </video>
 
 <script>
-/* Service Worker */
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
+/* SERVICE WORKER */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
 }
-
-/* Wake Lock */
-let wakeLock = null;
-
-async function requestWakeLock() {
-  try {
-    if ("wakeLock" in navigator) {
-      wakeLock = await navigator.wakeLock.request("screen");
-    }
-  } catch (e) {}
-}
-
-function releaseWakeLock() {
-  if (wakeLock) {
-    wakeLock.release();
-    wakeLock = null;
-  }
-}
-
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible" && interval) {
-    requestWakeLock();
-  }
-});
 
 /* PRACTICE DATA */
 const practice = [
-
-/* =========================
-   PHASE 1 — INTERNAL AWAKENING
-   ========================= */
 {
   phase: "Phase 1 — Internal Awakening",
-  section: "Kriyas & Breath",
   steps: [
-    {
-      name: "Easy Seat + Grounding",
-      time: 60,
-      cue: "Sit tall. Hands on knees. Feel your breath settle into the belly.",
-      bandha: "Gentle Mula awareness · no engagement",
-      image: "images/poses/easy-seat.png"
-    },
     {
       name: "Madhyama Nauli",
-      time: 120,
-      cue: "Exhale fully. Draw belly up and in. Isolate the central abdominal column. Release gently.",
-      bandha: "Uddiyana Bandha · subtle Mula",
-      image: "images/poses/nauli.png"
+      time: 90,
+      desc: "Exhale fully, hold breath out, lift belly in and up. Isolate center abs. Release softly.",
+      bandha: "Uddiyana Bandha → subtle Mula Bandha"
     },
     {
-      name: "Kundalini Bhastrika with Twists",
+      name: "Seated Kundalini Bhastrika Twists",
       time: 120,
-      cue: "Fast rhythmic breathing. Twist left on inhale, right on exhale. Keep spine tall.",
-      bandha: "Natural core engagement · no locks held",
-      image: "images/poses/seated-twist.png"
+      desc: "Fast rhythmic breath with spinal twists. Inhale twist one side, exhale the other.",
+      bandha: "Natural navel activation"
     }
   ]
 },
-
-/* =========================
-   PHASE 2 — SPINAL & ENERGY MOBILIZATION
-   ========================= */
 {
-  phase: "Phase 2 — Spinal Activation",
-  section: "Seated Movement",
+  phase: "Phase 2 — Fascia Intelligence",
   steps: [
     {
-      name: "Spinal Flex",
+      name: "Knee Pulses with Arm Pendulum",
       time: 90,
-      cue: "Inhale as chest lifts. Exhale as spine rounds. Move fluidly.",
-      bandha: "Light Mula on exhale",
-      image: "images/poses/spinal-flex.png"
+      desc: "Softly bend and straighten knees while arms swing freely.",
+      bandha: "None — elastic recoil"
     },
     {
-      name: "Sufi Circles",
+      name: "Side-to-Side Fascia Squats",
       time: 90,
-      cue: "Circle the torso smoothly. Let breath guide the motion.",
-      bandha: "No bandhas · free flow",
-      image: "images/poses/sufi-circles.png"
-    },
-    {
-      name: "Side Stretch",
-      time: 90,
-      cue: "Inhale lengthen. Exhale side bend. Switch sides.",
-      bandha: "Neutral pelvis · no locks",
-      image: "images/poses/side-stretch.png"
+      desc: "Wide stance, shift into one knee bend while other leg stays long. Reach opposite arm.",
+      bandha: "Gentle Mula Bandha on return"
     }
   ]
 },
-
-/* =========================
-   PHASE 3 — STANDING ENERGY BUILD
-   ========================= */
 {
-  phase: "PHASE 3 — Standing Energy & Fascia Activation",
-  section: "Standing Kriyas",
+  phase: "Phase 3 — Fluid Spinal Waves",
   steps: [
-
     {
-      name: "Windmills",
-      time: 90,
-      cue: "Feet wide. Exhale twist and reach opposite hand to foot. Inhale rise through center. Rhythmic and fluid.",
-      bandha: "Natural core tone only",
-      image: "images/poses/windmill.png"
-    },
-
-    {
-      name: "Elastic Knee Pulses",
-      time: 90,
-      cue: "Knees soft. Inhale arms float up as legs extend. Exhale arms swing down as knees bend. Springy, relaxed.",
-      bandha: "No intentional bandha — allow elastic rebound",
-      image: "images/poses/fascia_pulse.png"
-    },
-
-    {
-      name: "Marches",
-      time: 90,
-      cue: "Inhale lift knee and arms. Exhale lower. Alternate sides, gradually building rhythm.",
-      bandha: "Light Mula Bandha on exhale",
-      image: "images/poses/marches.png"
-    },
-
-    {
-      name: "Lateral Squat & Reach",
+      name: "Standing Body Waves",
       time: 120,
-      cue: "Wide stance. Exhale bend one knee, opposite hand reaches across. Inhale center. Switch sides slowly.",
-      bandha: "Gentle Mula Bandha when rising",
-      image: "images/poses/lateral_squat.png"
+      desc: "Pelvis initiates wave through spine, chest and head. Smooth and continuous.",
+      bandha: "None — let energy flow"
     },
-
     {
-      name: "Chair Pose with Breath of Fire",
+      name: "Trunk Twists",
       time: 120,
-      cue: "Sit low. Arms overhead. Short sharp exhales through the nose. Belly pumps rhythmically.",
-      bandha: "Strong Mula Bandha, subtle Uddiyana",
-      image: "images/poses/chair_bof.png"
+      desc: "Relaxed twisting with loose arms. Breath leads movement.",
+      bandha: "Minimal core tone only"
     }
-
   ]
 },
-
-/* =========================
-   PHASE 4 — FLOW & RELEASE
-   ========================= */
 {
-  phase: "Phase 4 — Flow & Release",
-  section: "Standing to Floor",
+  phase: "Phase 4 — Lymphatic & Energy Activation",
   steps: [
     {
-      name: "Trunk Twists / Body Waves",
-      time: 150,
-      cue: "Wave the spine fluidly. Twist, ripple, release. Let movement be intuitive.",
-      bandha: "Minimal · energy flows freely",
-      image: "images/poses/body-wave.png"
+      name: "Lymphatic Hops",
+      time: 90,
+      desc: "Light springing hops, heels soft. Arms relaxed.",
+      bandha: "Reflexive Mula Bandha"
     },
+    {
+      name: "Marches with Breath",
+      time: 90,
+      desc: "Lift knees alternately with breath. Arms rise and fall.",
+      bandha: "Light navel tone"
+    },
+    {
+      name: "Horse Stance Reaches",
+      time: 120,
+      desc: "Wide squat, reach arms up and out rhythmically.",
+      bandha: "Mula + Uddiyana light engagement"
+    }
+  ]
+},
+{
+  phase: "Phase 5 — Integration & Grounding",
+  steps: [
     {
       name: "Standing Forward Fold",
       time: 90,
-      cue: "Soften knees. Long exhales. Let head and spine fully release.",
-      bandha: "No bandhas · complete letting go",
-      image: "images/poses/standing-forward-fold.png"
-    }
-  ]
-},
-
-/* =========================
-   PHASE 5 — INTEGRATION & GROUNDING
-   ========================= */
-{
-  phase: "Phase 5 — Integration & Grounding",
-  section: "Seated & Rest",
-  steps: [
+      desc: "Soften knees, let spine decompress. Long exhales.",
+      bandha: "None"
+    },
     {
       name: "Seated Twist + Forward Fold",
-      time: 150,
-      cue: "Gentle twist, then fold. Slow breath. Nervous system settles.",
-      bandha: "All bandhas released",
-      image: "images/poses/seated-fold.png"
+      time: 120,
+      desc: "Gentle seated twist followed by soft forward fold. Nervous system settles.",
+      bandha: "None"
     },
     {
       name: "Short Savasana",
-      time: 180,
-      cue: "Lie down. Hands on belly or heart. Absorb the practice.",
-      bandha: "No bandhas · no effort",
-      image: "images/poses/savasana.png"
+      time: 150,
+      desc: "Lie down. Hands on belly or heart. No effort.",
+      bandha: "None"
     }
   ]
 }
-
 ];
 
 /* STATE */
@@ -384,13 +263,11 @@ let interval = null;
 
 /* UI */
 const phaseEl = document.getElementById("phase");
-const sectionEl = document.getElementById("section");
 const movementEl = document.getElementById("movement");
 const timerEl = document.getElementById("timer");
-const instructionEl = document.getElementById("instruction");
+const descEl = document.getElementById("description");
 const bandhaEl = document.getElementById("bandha");
 const nextEl = document.getElementById("next");
-const poseImage = document.getElementById("poseImage");
 const progressBar = document.getElementById("progressBar");
 const progressTime = document.getElementById("progressTime");
 
@@ -400,71 +277,56 @@ function beep() {
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
   osc.frequency.value = 880;
-  gain.gain.value = 0.12;
+  gain.gain.value = 0.1;
   osc.connect(gain);
   gain.connect(audioCtx.destination);
   osc.start();
   osc.stop(audioCtx.currentTime + 0.15);
 }
 
-/* TIME */
+/* TOTAL TIME */
 const totalTime = practice.reduce(
-  (sum, sec) => sum + sec.steps.reduce((a, b) => a + b.time, 0), 0
+  (sum, p) => sum + p.steps.reduce((a,b)=>a+b.time,0), 0
 );
 
 function elapsed() {
   let e = 0;
-  for (let i = 0; i < s; i++)
-    e += practice[i].steps.reduce((a, b) => a + b.time, 0);
-  for (let j = 0; j < m; j++)
+  for (let i=0;i<s;i++)
+    e += practice[i].steps.reduce((a,b)=>a+b.time,0);
+  for (let j=0;j<m;j++)
     e += practice[s].steps[j].time;
   e += practice[s].steps[m].time - time;
   return e;
 }
 
-function getNextStep() {
-  if (m + 1 < practice[s].steps.length) return practice[s].steps[m + 1];
-  if (s + 1 < practice.length) return practice[s + 1].steps[0];
-  return null;
-}
-
 /* RENDER */
 function render() {
   const step = practice[s].steps[m];
-
   phaseEl.textContent = practice[s].phase;
-  sectionEl.textContent = practice[s].section;
   movementEl.textContent = step.name;
-  instructionEl.textContent = step.cue;
-  bandhaEl.textContent = step.bandha ? `Bandha → ${step.bandha}` : "";
+  descEl.textContent = step.desc;
+  bandhaEl.textContent = "Bandha: " + step.bandha;
 
-  poseImage.src = step.image || "images/poses/default.png";
+  const nxt = getNext();
+  nextEl.textContent = nxt ? `Next → ${nxt.name}` : "";
 
   timerEl.textContent =
-    `${String(Math.floor(time / 60)).padStart(2, "0")}:${String(time % 60).padStart(2, "0")}`;
+    `${Math.floor(time/60).toString().padStart(2,"0")}:${(time%60).toString().padStart(2,"0")}`;
 
-  const e = elapsed();
-  progressBar.style.width = `${(e / totalTime) * 100}%`;
-
+  progressBar.style.width = `${(elapsed()/totalTime)*100}%`;
   progressTime.textContent =
-    `${String(Math.floor(e / 60)).padStart(2, "0")}:${String(e % 60).padStart(2, "0")}
-     / ${String(Math.floor(totalTime / 60)).padStart(2, "0")}:${String(totalTime % 60).padStart(2, "0")}`;
-
-  const nxt = getNextStep();
-  nextEl.textContent = nxt ? `Next → ${nxt.name}` : "";
+    `${Math.floor(elapsed()/60)}:${(elapsed()%60).toString().padStart(2,"0")} / ${Math.floor(totalTime/60)}:${(totalTime%60).toString().padStart(2,"0")}`;
 }
 
 /* CONTROLS */
 function start() {
   if (interval) return;
   audioCtx.resume();
-  requestWakeLock();
-  document.getElementById("wakelock").play().catch(() => {});
   beep();
-
+  document.getElementById("wakelock").play().catch(()=>{});
   interval = setInterval(() => {
     time--;
-    if (time < 0) next();
+    if (time < 0) next(true);
     render();
   }, 1000);
 }
@@ -472,46 +334,51 @@ function start() {
 function pause() {
   clearInterval(interval);
   interval = null;
-  releaseWakeLock();
   document.getElementById("wakelock").pause();
 }
 
 function reset() {
   pause();
-  s = 0;
-  m = 0;
+  s = 0; m = 0;
   time = practice[0].steps[0].time;
   render();
 }
 
-function next() {
+function next(auto=false) {
   m++;
   if (m >= practice[s].steps.length) {
-    m = 0;
-    s++;
+    m = 0; s++;
     if (s >= practice.length) {
       pause();
       movementEl.textContent = "Practice Complete 🌿";
-      instructionEl.textContent = "Sat Nam";
+      descEl.textContent = "Inhale deeply → soft Sat Nam";
       timerEl.textContent = "";
-      bandhaEl.textContent = "";
       nextEl.textContent = "";
       return;
     }
   }
   time = practice[s].steps[m].time;
+  beep();
 }
 
 function prev() {
   m--;
   if (m < 0) {
-    s = Math.max(0, s - 1);
-    m = practice[s].steps.length - 1;
+    s--;
+    if (s < 0) { s = 0; m = 0; }
+    else m = practice[s].steps.length - 1;
   }
   time = practice[s].steps[m].time;
 }
 
+function getNext() {
+  if (m+1 < practice[s].steps.length) return practice[s].steps[m+1];
+  if (s+1 < practice.length) return practice[s+1].steps[0];
+  return null;
+}
+
 render();
 </script>
+
 </body>
 </html>
